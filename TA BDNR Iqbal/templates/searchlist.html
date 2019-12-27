@@ -1,0 +1,44 @@
+<html>
+	<head>
+		<title>{{t}}</title>
+		<link rel="stylesheet" type="text/css"  href="{{ url_for('static',filename='assets/style.css')}}" >
+	</head>
+<body>
+	<h1>{{h}}</h1>
+	<hr>
+	{% if todos[0] %}
+	<h3>Hasil Pencarian :</h3>
+	<table>
+	    <tr id="row">
+	    	<td class="status">Status</td>
+	    	<td class="name">Nama</td>
+	    	<td class="prodi">Program Studi</td>
+	    	<td class="desc">No Telepon/WA</td>
+	    	<td class="email">Email</td>
+	    	<td class="ig">Ig</td>	
+	    	<td class="date">Tanggal</td>
+	    	<td class="pr">Jenis Kelamin</td>
+		<td class="func">Hapus</td>
+		<td class="func">Edit</td>
+	    </tr>
+		{% for todo in todos %}
+		<tr class="datas">
+			<td><a href="./done?_id={{ todo['_id'] }}"><input type="image" src="static/images/{{todo['done']}}.png" alt="Submit ME"></a></td>
+			<td class="name">{{ todo["name"] }}</td>
+			<td class="prodi">{{ todo["prodi"] }}</td>
+			<td class="desc">{{ todo["desc"] }}</td>
+			<td class="email">{{ todo["email"] }}</td>
+			<td class="ig">{{ todo["ig"] }}</td>
+			<td class="date">{{ todo["date"] }}</td>
+			<td class="pr">{{ todo["pr"] }}</td>
+			<td class="func1"><a href="./remove?_id={{ todo['_id'] }}"><button type="submit">HAPUS</button></a></td>
+			<td class="func1"><a href="./update?_id={{ todo['_id'] }}"><button type="submit">EDIT</button></a></td>
+		</tr>
+		{% endfor %}
+	{% else %}
+		<h4>Nama pengguna tidak ditemukan</h4>
+	{% endif %}
+	</table>
+	<a href="/">Kembali</a>
+</body>
+</html>

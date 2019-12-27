@@ -1,0 +1,53 @@
+<html>
+	<head>
+		<title>{{t}}</title>
+		<link rel="stylesheet" type="text/css"  href="{{ url_for('static',filename='assets/style.css')}}" >
+	</head>
+	<style>	
+		h1{
+			font-family:"Arial Black", Gadget, sans-serif;
+		}
+		body{
+			background-color:white;
+		}
+	</style>
+<body>
+	<h1>{{h}}</h1>
+	<hr>
+	<h3>Update Nama</h3>
+	<form action="/action3" method="POST">
+	{% for task in tasks %}
+		Object ID : {{ task['_id'] }}<br/>
+	<input type="text" name="_id" value="{{ task['_id'] }}" hidden>
+
+	<table>
+	<tr>
+	<td>Nama</td><td> : </td><td><input type="text" name="name" value="{{ task['name'] }}" placeholder="{{ task['name'] }}"></td>
+	</tr>
+	<tr>
+	<td>Program Studi</td><td> : </td><td><input type="text" name="prodi" value="{{ task['prodi'] }}" placeholder="{{ task['prodi'] }}">
+	</td>
+	</tr>
+	<tr>
+	<td>No Telepon/WA</td><td> : </td><td><input type="text" name="desc" rows=3 cols=30 placeholder="{{ task['desc'] }}"></td>
+	</tr>
+	<tr>
+	<td>Email</td><td> : </td><td><input type="text" name="email" value="{{ task['email'] }}" placeholder="{{ task['email'] }}"></td>
+	</tr>
+	<tr>
+	<td>Instagram</td><td> : </td><td><input type="text" name="ig" value="{{ task['ig'] }}" placeholder="{{ task['ig'] }}"></td>
+	</tr>
+	<tr>
+	<td>Tanggal</td><td> : </td><td><input type="text" name="date" value="{{ task['date'] }}" placeholder="{{ task['date'] }}"></td>
+	</tr>
+	<tr>
+	<td>Jenis Kelamin</td><td> : </td><td><input type="text" name="pr" value="{{ task['pr'] }}" placeholder="{{ task['pr'] }}"></td>
+	</tr>
+	</table>
+	{% endfor %}
+		<button type="submit">Update Nama sekarang</button>
+		<br/>
+	</form>
+	<a href="/">Kembali</a>
+</body>
+</html>

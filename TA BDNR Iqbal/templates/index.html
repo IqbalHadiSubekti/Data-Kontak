@@ -1,0 +1,138 @@
+<html>
+	<head>
+		<title>{{t}}</title>
+		<!-- href="/static/assets/style.css"-->
+		<link rel="stylesheet" type="text/css"  href="{{ url_for('static',filename='assets/style.css')}}" >
+		<link rel="stylesheet" type="text/css"  href="{{ url_for('static',filename='assets/emoji.css')}}" >
+		<script src="{{ url_for('static',filename='assets/twemoji.min.js')}}"></script>  
+		<script src="{{ url_for('static',filename='assets/emoji.js')}}"></script>
+	</head>
+<body>
+	<h1>{{ h }}</h1>
+	<ul>
+		<li><a href="/list" class="{{ a1 }}">Data semua</a></li>
+		<li><a href="/" class="{{ a2 }}">Belum divalidasi</a></li>
+		<li><a href="/completed" class="{{ a3 }}">Sudah divalidasi</a></li>
+		<li style="float:right"><a href="/about">Tentang</a></li>
+	</ul>
+	{% if error %}
+		<div class="alert alert-danger">
+	  		<strong>Error</strong> {{ error }}
+		</div>
+	{% endif %}
+	<hr>
+	{% if todos[0] %}
+	<div span="right">
+	<form action="/search"	method="GET" >
+		<table class="none" id="close">
+		<tr>
+		<td></td><td></td>
+		<td><big><b>Cari pengguna:</b></big></td>
+		<td><select name="refer" required>
+			<option value="id">Object ID</option>
+			<option value="name">Nama</option>
+			<option value="prodi">Program Studi</option>
+			<option value="desc">No Telepon/WA</option>
+			<option value="ig">Instagram</option>
+			<option value="date">Tanggal</option>
+			<option value="pr">Jenis Kelamin</option>
+		</select></td>
+		<td><input type="text" name="key" placeholder="Cari Nama" size="15" /></td>
+		<td><button type="submit">Cari</button></td>
+		</tr>
+		</table>
+	</form>
+	</div>
+	<b><big>Daftar pengguna :</big></b>
+	<table>
+	    <tr id="row">
+	    	<th class="status">Status</th>
+	    	<th class="name">Nama</th>
+	    	<th class="prodi">Program Studi</th>
+	    	<th class="desc">No Telepon/WA</th>
+	    	<th class="email">Email</th>
+	    	<th class="ig">Instagram</th>
+	    	<th class="date">Tanggal</th>
+	    	<th class="pr">Jenis Kelamin</th>
+		<th class="func1">Hapus</th>
+		<th class="func2">Edit</th>
+	    </tr>
+	{% for todo in todos %}
+		<tr class="datas">
+			<td><a href="./done?_id={{ todo['_id'] }}"><input type="image" src="static/images/{{todo['done']}}.png" alt="Submit ME"></a></td>
+			<td class="name">{{ todo["name"] }}</td>
+			<td class="desc">{{ todo["desc"] }}</td>
+			<td class="prodi">{{ todo["prodi"] }}</td>
+			<td class="email">{{ todo["email"] }}</td>
+			<td class="ig">{{ todo["ig"] }}</td>
+			<td class="date">{{ todo["date"] }}</td>
+			<td class="pr">{{ todo["pr"] }}</td>
+			<td class="func1"><a href="./remove?_id={{ todo['_id'] }}">HAPUS</a></td>
+			<td class="func2"><a href="./update?_id={{ todo['_id'] }}">EDIT</a></td>
+		</tr>
+	{% endfor %}
+	</table>
+	{% else %}
+		<div class="danger">
+			<h4>Belum ada daftar nama</h4>
+		</div>
+	{% endif %}
+	<hr/>
+	<form action="/action" method="POST">
+	<table class="none">
+		<tr class="row success">
+			<td>
+				<h2>Tambahkan nama</h2>
+			</td>
+		</tr>
+		<tr class="row">
+			<td class="col-2">
+				<input type="text" name="name" placeholder="Nama" />
+			</td>
+		</tr>
+		<tr class="row">
+			<td class="col-2">
+				<input type="text" name="prodi" placeholder="Program Studi" />
+			</td>
+		</tr>
+		<tr class="row">
+			<td class="col-2">
+				<input name="desc" rows="2" cols="30" placeholder="No Telepon/WA" required>
+			</td>
+		</tr>
+		<tr class="row">
+			<td class="col-2">
+				<input name="email" rows="2" cols="30" placeholder="Email" required>
+			</td>
+		</tr>
+		<tr class="row">
+			<td class="col-2">
+				<input type="text" name="ig" placeholder="Instagram" />
+			</td>
+		</tr>
+		<tr class="row">
+			<td class="col-2">
+				<input type="date" name="date" placeholder="Tanggal" />
+			</td>
+		</tr>
+		<tr class="row">
+			<td class="col-2">
+				<select name="pr">
+					<option selected disabled>Jenis Kelamin</option>
+					<option>Laki-laki</option>
+					<option>Perempuan</option>
+				</select>
+			</td>
+		</tr>
+		<tr class="row">
+			<td class="col-2">
+				<button type="submit">Simpan</button>
+			</td>
+		</tr>
+	</form>
+	</table>
+	<script>
+
+	</script>
+</body>
+</html>

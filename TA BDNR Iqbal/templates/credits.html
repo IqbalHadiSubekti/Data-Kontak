@@ -1,0 +1,28 @@
+<html>
+	<head>
+		<title>{{t}}</title>
+		<link rel="stylesheet" type="text/css"  href="{{ url_for('static',filename='assets/style.css')}}" >
+		<style>
+			body {
+				background-color:white;
+			}
+			.credits {
+				margin:10px;
+			}
+		</style>
+		<link rel="stylesheet" type="text/css"  href="{{ url_for('static',filename='assets/emoji.css')}}" >
+		<script src="{{ url_for('static',filename='assets/twemoji.min.js')}}"></script>  
+		<script src="{{ url_for('static',filename='assets/emoji.js')}}"></script>
+	</head>
+<body>
+	<a href="/"><h1>{{ h }}</h1></a>
+	<hr>
+	<h3>Credits :</h3>
+	<div class='credits'>
+		Iqbal Hadi Subekti<br>
+		iqbalhadist98@gmail.com		
+	</div>
+	<hr>
+	<p>Purworejo, Jawa Tengah</p>
+</body>
+</html>
